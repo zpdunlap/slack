@@ -239,7 +239,6 @@ func (rtm *RTM) handleEvents(events chan json.RawMessage) {
 		select {
 		// catch "stop" signal on channel close
 		case intentional := <-rtm.killChannel:
-			_ = rtm.killConnection(intentional, errorsx.String("signaled"))
 			return
 		// detect when the connection is dead.
 		case <-rtm.pingDeadman.C:
